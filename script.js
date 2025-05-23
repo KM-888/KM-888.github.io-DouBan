@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    // Function to close the login/register modal
    if (closeLoginRegisterModalBtn) {
-       closeLoginRegisterModalBtn.addEventListener('click', () () => {
+       closeLoginRegisterModalBtn.addEventListener('click', ()  => {
            loginRegisterModal.style.display = 'none';
        });
    }
