@@ -4,65 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>豆瓣 - 你的精神角落</title>
+    <!-- 引入Tailwind CSS框架 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Google字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f6f6f6;
-        }
-        /* 自定义一些豆瓣的颜色 */
-        .douban-green {
-            background-color: #42bd56;
-        }
-        .douban-text-green {
-            color: #42bd56;
-        }
-        .douban-gray {
-            background-color: #ededed;
-        }
-        .douban-border-gray {
-            border-color: #ccc;
-        }
-        /* 隐藏模态框 */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-        }
-        .modal-close-button {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-    </style>
+    <!-- 链接到外部CSS样式表 -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
+<!-- 页面头部 -->
 <header class="bg-white shadow-sm py-4 px-4 md:px-8 lg:px-16 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-2">
         <span class="text-2xl font-bold douban-text-green">豆瓣</span>
         <span class="text-2xl font-bold text-gray-800 hidden md:block">douban</span>
     </div>
 
+    <!-- 导航栏 -->
     <nav class="hidden md:flex space-x-6 text-gray-600 text-sm">
         <a href="#" class="hover:text-douban-text-green transition-colors duration-200">读书</a>
         <a href="#" class="hover:text-douban-text-green transition-colors duration-200">电影</a>
@@ -75,6 +33,7 @@
         <a href="#" class="hover:text-douban-text-green transition-colors duration-200">豆品</a>
     </nav>
 
+    <!-- 搜索和登录区域 -->
     <div class="flex items-center space-x-4">
         <div class="relative">
             <label for="search-input" class="sr-only">搜索 电影、图书、音乐...</label>
@@ -92,8 +51,10 @@
     </div>
 </header>
 
+<!-- 主要内容区域 -->
 <main class="container mx-auto mt-6 p-4 md:p-6 flex-grow">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- 左侧边栏 (大屏幕可见) -->
         <aside class="lg:col-span-1 hidden lg:block space-y-6">
             <div class="bg-white p-6 rounded-lg shadow-sm">
                 <h2 class="text-lg font-semibold mb-4">豆瓣，你的精神角落</h2>
@@ -107,11 +68,12 @@
             <div class="bg-white p-6 rounded-lg shadow-sm text-center">
                 <h3 class="text-md font-semibold mb-2">下载豆瓣App</h3>
                 <p class="text-gray-600 text-sm mb-4">更精彩的内容和功能等你发现</p>
-                <img src="img/doubanapp_qrcode.png" onerror="this.onerror=null;this.src='https://placehold.co/120x120/e0e0e0/ffffff?text=QR+Code';" alt="Download App QR Code" class="mx-auto mb-4 rounded-md">
+                <img src="img/doubanapp_qrcode.png" onerror="this.onerror=null;this.src='https://placehold.co/120x120/e0e0e0/ffffff?text=QR+Code';" alt="下载App二维码" class="mx-auto mb-4 rounded-md">
                 <button class="douban-green text-white px-4 py-2 rounded-md w-full hover:opacity-90 transition-opacity duration-200 text-sm">立即下载</button>
             </div>
         </aside>
 
+        <!-- 右侧主内容区 -->
         <section class="lg:col-span-2 space-y-8">
             <!-- 精选内容 - 必做项 -->
             <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -121,7 +83,7 @@
                 </h2>
                 <div class="space-y-6">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 border-b pb-4 last:border-b-0 last:pb-0">
-                        <img src="img/OIP.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="Content Image" class="w-full sm:w-24 h-auto rounded-md object-cover">
+                        <img src="img/OIP.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="内容图片" class="w-full sm:w-24 h-auto rounded-md object-cover">
                         <div class="flex-1">
                             <h3 class="text-lg font-medium text-gray-800 hover:text-douban-text-green cursor-pointer">3000元，九天八晚昆大丽香经典线！双飞、自驾、徒步、精华全都有，省钱高游经验分享！</h3>
                             <p class="text-gray-600 text-sm mt-1 line-clamp-2">写在前面:我从武汉出发昆明, 从成都出发大理。我们大理汇合取车。...</p>
@@ -133,7 +95,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 border-b pb-4 last:border-b-0 last:pb-0">
-                        <img src="img/100g10000000peyhv5AAF_D_256_180.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="Content Image" class="w-full sm:w-24 h-auto rounded-md object-cover">
+                        <img src="img/100g10000000peyhv5AAF_D_256_180.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="内容图片" class="w-full sm:w-24 h-auto rounded-md object-cover">
                         <div class="flex-1">
                             <h3 class="text-lg font-medium text-gray-800 hover:text-douban-text-green cursor-pointer">如果一辈子只能去一次日本，那就像我们这么玩！关东+关西一网打尽！</h3>
                             <p class="text-gray-600 text-sm mt-1 line-clamp-2">东京富士山 京都神户...</p>
@@ -145,7 +107,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 border-b pb-4 last:border-b-0 last:pb-0">
-                        <img src="img/100o0h000000907edD905_C_1180_462.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="Content Image" class="w-full sm:w-24 h-auto rounded-md object-cover">
+                        <img src="img/100o0h000000907edD905_C_1180_462.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x70/d0d0d0/333333?text=Content+Image';" alt="内容图片" class="w-full sm:w-24 h-auto rounded-md object-cover">
                         <div class="flex-1">
                             <h3 class="text-lg font-medium text-gray-800 hover:text-douban-text-green cursor-pointer">我发现了如何发自心底地感恩</h3>
                             <p class="text-gray-600 text-sm mt-1 line-clamp-2">几个月前,我在台北乱逛的时候随便找了一家美甲店卸甲油胶,结果...</p>
@@ -175,7 +137,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianying5.jpg" onerror="this.onerror=null;this.src='img/dianying5.jpg';" alt="Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianying5.jpg" onerror="this.onerror=null;this.src='img/dianying5.jpg';" alt="电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">阿凡达</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -184,7 +146,7 @@
                         <button class="douban-green text-white px-2 py-1 mt-1 rounded-md text-xs hover:opacity-90 transition-opacity duration-200">选座购票</button>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianying4.jpg" onerror="this.onerror=null;this.src='img/dianying4.jpg';" alt="Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianying4.jpg" onerror="this.onerror=null;this.src='img/dianying4.jpg';" alt="电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">海上钢琴师</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★☆</span>
@@ -193,7 +155,7 @@
                         <button class="douban-green text-white px-2 py-1 mt-1 rounded-md text-xs hover:opacity-90 transition-opacity duration-200">选座购票</button>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianying3.jpg" onerror="this.onerror=null;this.src='img/dianying3.jpg';" alt="Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianying3.jpg" onerror="this.onerror=null;this.src='img/dianying3.jpg';" alt="电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">你的名字</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -202,7 +164,7 @@
                         <button class="douban-green text-white px-2 py-1 mt-1 rounded-md text-xs hover:opacity-90 transition-opacity duration-200">选座购票</button>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianying2.jpg" onerror="this.onerror=null;this.src='img/dianying2.jpg';" alt="Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianying2.jpg" onerror="this.onerror=null;this.src='img/dianying2.jpg';" alt="电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">白日梦想家</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -211,7 +173,7 @@
                         <button class="douban-green text-white px-2 py-1 mt-1 rounded-md text-xs hover:opacity-90 transition-opacity duration-200">选座购票</button>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianying1.jpg" onerror="this.onerror=null;this.src='img/dianying1.jpg';" alt="Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianying1.jpg" onerror="this.onerror=null;this.src='img/dianying1.jpg';" alt="电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">花束般的恋爱</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -236,7 +198,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/book1.jpg" onerror="this.onerror=null;this.src='img/book1.jpg';" alt="Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/book1.jpg" onerror="this.onerror=null;this.src='img/book1.jpg';" alt="书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《毛泽东传：名著珍藏版》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -244,7 +206,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/book2.jpg" onerror="this.onerror=null;this.src='img/book2.jpg';" alt="Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/book2.jpg" onerror="this.onerror=null;this.src='img/book2.jpg';" alt="书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《明朝那些事儿》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -252,7 +214,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/book3.jpg" onerror="this.onerror=null;this.src='img/book3.jpg';" alt="Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/book3.jpg" onerror="this.onerror=null;this.src='img/book3.jpg';" alt="书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《邓小平时代》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -260,7 +222,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/book4.jpg" onerror="this.onerror=null;this.src='img/book4.jpg';" alt="Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/book4.jpg" onerror="this.onerror=null;this.src='img/book4.jpg';" alt="书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《天才在左，疯子在右》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -268,7 +230,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/book5.jpg" onerror="this.onerror=null;this.src='img/book5.jpg';" alt="Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/book5.jpg" onerror="this.onerror=null;this.src='img/book5.jpg';" alt="书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《寻路中国》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★☆</span>
@@ -304,7 +266,7 @@
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/10800d04507f5ce.jpg" onerror="this.onerror=null;this.src='img/10800d04507f5ce.jpg';" alt="Event Image" class="w-full h-32 object-cover">
+                        <img src="img/10800d04507f5ce.jpg" onerror="this.onerror=null;this.src='img/10800d04507f5ce.jpg';" alt="活动图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">【津味儿脱口秀】津脱-天津脱口秀俱乐部喜剧演出</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年6月1日 - 6月7日</p>
@@ -312,7 +274,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/effb5e2add5e710.jpg" onerror="this.onerror=null;this.src='img/effb5e2add5e710.jpg';" alt="Event Image" class="w-full h-32 object-cover">
+                        <img src="img/effb5e2add5e710.jpg" onerror="this.onerror=null;this.src='img/effb5e2add5e710.jpg';" alt="活动图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">VR元宇宙&XR大空间沉浸式体验畅玩票</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年6月8日</p>
@@ -320,7 +282,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/92f7bec8211c854.jpg" onerror="this.onerror=null;this.src='img/92f7bec8211c854.jpg';" alt="Event Image" class="w-full h-32 object-cover">
+                        <img src="img/92f7bec8211c854.jpg" onerror="this.onerror=null;this.src='img/92f7bec8211c854.jpg';" alt="活动图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">迷人的放逐：读书、电影、音乐、交流聚会</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年6月15日 - 6月16日</p>
@@ -344,7 +306,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/s3750422.jpg" onerror="this.onerror=null;this.src='img/s3750422.jpg';" alt="Album Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/s3750422.jpg" onerror="this.onerror=null;this.src='img/s3750422.jpg';" alt="专辑封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《范特西 / Fantasy》</h3>
                         <p class="text-xs text-gray-600">周杰伦</p>
                         <div class="flex items-center text-xs text-gray-500 mt-1">
@@ -353,7 +315,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/s8932514.jpg" onerror="this.onerror=null;this.src='img/s8932514.jpg';" alt="Album Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/s8932514.jpg" onerror="this.onerror=null;this.src='img/s8932514.jpg';" alt="专辑封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《Jay》</h3>
                         <p class="text-xs text-gray-600">周杰伦</p>
                         <div class="flex items-center text-xs text-gray-500 mt-1">
@@ -362,7 +324,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/s7033824.jpg" onerror="this.onerror=null;this.src='img/s7033824.jpg';" alt="Album Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/s7033824.jpg" onerror="this.onerror=null;this.src='img/s7033824.jpg';" alt="专辑封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《學不會》</h3>
                         <p class="text-xs text-gray-600">林俊杰</p>
                         <div class="flex items-center text-xs text-gray-500 mt-1">
@@ -371,7 +333,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/s27326029.jpg" onerror="this.onerror=null;this.src='img/s27326029.jpg';" alt="Album Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/s27326029.jpg" onerror="this.onerror=null;this.src='img/s27326029.jpg';" alt="专辑封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《平凡之路》</h3>
                         <p class="text-xs text-gray-600">朴树</p>
                         <div class="flex items-center text-xs text-gray-500 mt-1">
@@ -380,7 +342,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/s33609736.jpg" onerror="this.onerror=null;this.src='img/s33609736.jpg';" alt="Album Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/s33609736.jpg" onerror="this.onerror=null;this.src='img/s33609736.jpg';" alt="专辑封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《早开的晚霞》</h3>
                         <p class="text-xs text-gray-600">林宥嘉</p>
                         <div class="flex items-center text-xs text-gray-500 mt-1">
@@ -425,21 +387,21 @@
                 </h2>
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
-                        <img src="img/doubangroup2.jpg" alt="Group Icon" class="w-12 h-12 rounded-full object-cover">
+                        <img src="img/doubangroup2.jpg" alt="小组图标" class="w-12 h-12 rounded-full object-cover">
                         <div>
                             <h3 class="font-medium text-gray-800">今天你加班了吗？</h3>
                             <p class="text-xs text-gray-500">123,456 成员 · 每天更新</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
-                        <img src="img/doubangroup1.jpg" alt="Group Icon" class="w-12 h-12 rounded-full object-cover">
+                        <img src="img/doubangroup1.jpg" alt="小组图标" class="w-12 h-12 rounded-full object-cover">
                         <div>
                             <h3 class="font-medium text-gray-800">豆瓣买房经验交流</h3>
                             <p class="text-xs text-gray-500">98,765 成员 · 实用干货</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
-                        <img src="img/doubangroup3.jpg" alt="Group Icon" class="w-12 h-12 rounded-full object-cover">
+                        <img src="img/doubangroup3.jpg" alt="小组图标" class="w-12 h-12 rounded-full object-cover">
                         <div>
                             <h3 class="font-medium text-gray-800">每日穿搭分享</h3>
                             <p class="text-xs text-gray-500">200,000+ 成员 · 潮流前线</p>
@@ -456,14 +418,14 @@
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/doubanyuedu1.jpg" onerror="this.onerror=null;this.src='doubanyuedu1.jpg';" alt="Article Image" class="w-full h-32 object-cover">
+                        <img src="img/doubanyuedu1.jpg" onerror="this.onerror=null;this.src='doubanyuedu1.jpg';" alt="文章图片" class="w-full h-32 object-cover">
                         <div class="p-3">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2">如何应对职场内卷：一份生存指南</h3>
                             <p class="text-gray-600 text-sm mt-1">作者: 小豆 | 5000字</p>
                         </div>
                     </div>
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/doubanyuedu2.jpg" onerror="this.onerror=null;this.src='doubanyuedu2.jpg';" alt="Article Image" class="w-full h-32 object-cover">
+                        <img src="img/doubanyuedu2.jpg" onerror="this.onerror=null;this.src='doubanyuedu2.jpg';" alt="文章图片" class="w-full h-32 object-cover">
                         <div class="p-3">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2">城市的角落：发现那些被遗忘的美好</h3>
                             <p class="text-gray-600 text-sm mt-1">作者: 大麦 | 8000字</p>
@@ -480,14 +442,14 @@
                 </h2>
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
-                        <img src="img/doubanboke.jpg" alt="Podcast Cover" class="w-16 h-16 rounded-md object-cover">
+                        <img src="img/doubanboke.jpg" alt="播客封面" class="w-16 h-16 rounded-md object-cover">
                         <div>
                             <h3 class="font-medium text-gray-800 line-clamp-1">随机波动：聊聊最近的生活感悟</h3>
                             <p class="text-xs text-gray-500">更新至 第120期 | 2025-06-20</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3 p-2 bg-gray-50 rounded-md hover:bg-gray-100 cursor-pointer">
-                        <img src="img/doubanboke2.jpg" alt="Podcast Cover" class="w-16 h-16 rounded-md object-cover">
+                        <img src="img/doubanboke2.jpg" alt="播客封面" class="w-16 h-16 rounded-md object-cover">
                         <div>
                             <h3 class="font-medium text-gray-800 line-clamp-1">故事FM：一个普通人的非凡人生</h3>
                             <p class="text-xs text-gray-500">更新至 第350期 | 2025-06-18</p>
@@ -504,22 +466,22 @@
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     <div class="flex flex-col items-center text-center border border-gray-100 rounded-lg p-2 shadow-sm hover:shadow-md transition-shadow">
-                        <img src="img/doubanjingxuan.jpg" onerror="this.onerror=null;this.src='doubanjingxuan.jpg';" alt="Product Image" class="w-24 h-24 object-cover rounded-md mb-2">
+                        <img src="img/doubanjingxuan.jpg" onerror="this.onerror=null;this.src='doubanjingxuan.jpg';" alt="产品图片" class="w-24 h-24 object-cover rounded-md mb-2">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-2">豆瓣笔记本</h3>
                         <p class="text-xs text-red-500 font-bold">¥ 39.00</p>
                     </div>
                     <div class="flex flex-col items-center text-center border border-gray-100 rounded-lg p-2 shadow-sm hover:shadow-md transition-shadow">
-                        <img src="img/doubanjingxuan2.jpg" onerror="this.onerror=null;this.src='doubanjingxuan2.jpg';" alt="Product Image" class="w-24 h-24 object-cover rounded-md mb-2">
+                        <img src="img/doubanjingxuan2.jpg" onerror="this.onerror=null;this.src='doubanjingxuan2.jpg';" alt="产品图片" class="w-24 h-24 object-cover rounded-md mb-2">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-2">豆瓣咖啡杯</h3>
                         <p class="text-xs text-red-500 font-bold">¥ 68.00</p>
                     </div>
                     <div class="flex flex-col items-center text-center border border-gray-100 rounded-lg p-2 shadow-sm hover:shadow-md transition-shadow">
-                        <img src="img/doubanjingxuan3.jpg" onerror="this.onerror=null;this.src='doubanjingxuan3.jpg';" alt="Product Image" class="w-24 h-24 object-cover rounded-md mb-2">
+                        <img src="img/doubanjingxuan3.jpg" onerror="this.onerror=null;this.src='doubanjingxuan3.jpg';" alt="产品图片" class="w-24 h-24 object-cover rounded-md mb-2">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-2">阅读之光台灯</h3>
                         <p class="text-xs text-red-500 font-bold">¥ 129.00</p>
                     </div>
                     <div class="flex flex-col items-center text-center border border-gray-100 rounded-lg p-2 shadow-sm hover:shadow-md transition-shadow">
-                        <img src="img/doubanjingxuan4.jpg" onerror="this.onerror=null;this.src='doubanjingxuan4.jpg';" alt="Product Image" class="w-24 h-24 object-cover rounded-md mb-2">
+                        <img src="img/doubanjingxuan4.jpg" onerror="this.onerror=null;this.src='doubanjingxuan4.jpg';" alt="产品图片" class="w-24 h-24 object-cover rounded-md mb-2">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-2">文艺帆布包</h3>
                         <p class="text-xs text-red-500 font-bold">¥ 55.00</p>
                     </div>
@@ -612,7 +574,7 @@
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianshiju.jpg" onerror="this.onerror=null;this.src='dianshiju.jpg';" alt="TV Series Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianshiju.jpg" onerror="this.onerror=null;this.src='dianshiju.jpg';" alt="电视剧海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《庆余年2》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -620,7 +582,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianshiju2.jpg" onerror="this.onerror=null;this.src='dianshiju2.jpg';" alt="TV Series Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianshiju2.jpg" onerror="this.onerror=null;this.src='dianshiju2.jpg';" alt="电视剧海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《繁花》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -628,7 +590,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/dianshiju3.jpg" onerror="this.onerror=null;this.src='dianhsiju3.jpg';" alt="TV Series Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/dianshiju3.jpg" onerror="this.onerror=null;this.src='dianhsiju3.jpg';" alt="电视剧海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《漫长的季节》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -646,7 +608,7 @@
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/xianshanghuodong.jpg" onerror="this.onerror=null;this.src='xianshanghuodong.jpg';" alt="Online Event Image" class="w-full h-32 object-cover">
+                        <img src="img/xianshanghuodong.jpg" onerror="this.onerror=null;this.src='xianshanghuodong.jpg';" alt="线上活动图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">线上读书分享会：阅读的力量</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年7月1日 20:00</p>
@@ -654,7 +616,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/xianshanghuodong2.jpg" onerror="this.onerror=null;this.src='xianshanghuodong2.jpg';" alt="Online Event Image" class="w-full h-32 object-cover">
+                        <img src="img/xianshanghuodong2.jpg" onerror="this.onerror=null;this.src='xianshanghuodong2.jpg';" alt="线上活动图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">线上音乐会：夏日治愈之声</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年7月5日 19:30</p>
@@ -738,7 +700,7 @@
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tuijiandianying1.jpg" onerror="this.onerror=null;this.src='tuijiandianying1.jpg';" alt="Recommended Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tuijiandianying1.jpg" onerror="this.onerror=null;this.src='tuijiandianying1.jpg';" alt="推荐电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《寻梦环游记》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -746,7 +708,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tuijiandianying2.jpg" onerror="this.onerror=null;this.src='tuijiandianying2.jpg';" alt="Recommended Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tuijiandianying2.jpg" onerror="this.onerror=null;this.src='tuijiandianying2.jpg';" alt="推荐电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《教父》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -754,7 +716,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tuijiandianying3.jpg" onerror="this.onerror=null;this.src='tuijiandianying3.jpg';" alt="Recommended Movie Poster" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tuijiandianying3.jpg" onerror="this.onerror=null;this.src='tuijiandianying3.jpg';" alt="推荐电影海报" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《搏击俱乐部》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -772,7 +734,7 @@
                 </h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tushu.jpg" onerror="this.onerror=null;this.src='tushu.jpg';" alt="Recommended Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tushu.jpg" onerror="this.onerror=null;this.src='tushu.jpg';" alt="推荐书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《小王子》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -780,7 +742,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tushu2.jpg" onerror="this.onerror=null;this.src='tushu2.jpg';" alt="Recommended Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tushu2.jpg" onerror="this.onerror=null;this.src='tushu2.jpg';" alt="推荐书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《平凡的世界》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -788,7 +750,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center">
-                        <img src="img/tushu3.jpg" onerror="this.onerror=null;this.src='tushu3.jpg';" alt="Recommended Book Cover" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
+                        <img src="img/tushu3.jpg" onerror="this.onerror=null;this.src='tushu3.jpg';" alt="推荐书籍封面" class="w-full h-auto rounded-md shadow-sm mb-2 object-cover">
                         <h3 class="text-sm font-medium text-gray-800 line-clamp-1">《白夜行》</h3>
                         <div class="flex items-center text-xs text-gray-500">
                             <span class="text-yellow-500">★★★★★</span>
@@ -806,7 +768,7 @@
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/zhanlan1.jpg" onerror="this.onerror=null;this.src='zhanlan1.jpg';" alt="Exhibition Image" class="w-full h-32 object-cover">
+                        <img src="img/zhanlan1.jpg" onerror="this.onerror=null;this.src='zhanlan1.jpg';" alt="展览图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">印象派大师展：莫奈与他的朋友们</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年6月20日 - 8月30日</p>
@@ -814,7 +776,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                        <img src="img/zhanlan2.jpg" onerror="this.onerror=null;this.src='zhanlan2.jpg';" alt="Exhibition Image" class="w-full h-32 object-cover">
+                        <img src="img/zhanlan2.jpg" onerror="this.onerror=null;this.src='zhanlan2.jpg';" alt="展览图片" class="w-full h-32 object-cover">
                         <div class="p-4">
                             <h3 class="text-md font-medium text-gray-800 line-clamp-2 mb-2">故宫文物大展：器物之美</h3>
                             <p class="text-gray-600 text-sm mb-2">时间：2025年7月1日 - 9月15日</p>
@@ -828,11 +790,13 @@
     </div>
 </main>
 
+<!-- 页面脚部 -->
 <footer class="bg-white mt-6 py-8 px-4 md:px-8 lg:px-16 text-center text-gray-500 text-sm">
     <p>© 2025 Douban.com, all rights reserved</p>
     <p class="mt-2">关于豆瓣 · 在豆瓣工作 · 联系我们 · 法律声明 · 隐私政策 · 帮助中心 · 移动应用</p>
 </footer>
 
+<!-- 登录/注册 模态框 -->
 <div id="loginRegisterModal" class="modal-overlay">
     <div class="modal-content">
         <span class="modal-close-button" id="closeLoginRegisterModal">×</span>
@@ -873,13 +837,14 @@
     </div>
 </div>
 
+<!-- 购物车 模态框 -->
 <div id="shoppingCartModal" class="modal-overlay">
     <div class="modal-content max-w-lg">
         <span class="modal-close-button" id="closeShoppingCartModal">×</span>
         <h2 class="text-2xl font-semibold mb-6 text-center">购物车</h2>
 
         <div id="cartItems" class="space-y-4 mb-6 max-h-80 overflow-y-auto pr-2">
-            <!-- Cart items will be rendered here by JavaScript -->
+            <!-- 购物车项目将由JavaScript动态渲染 -->
         </div>
 
         <div class="flex justify-between items-center text-lg font-semibold mb-6 border-t pt-4">
@@ -891,7 +856,7 @@
     </div>
 </div>
 
-
+<!-- 引入外部JavaScript文件 -->
 <script src="script.js"></script>
 
 </body>
