@@ -3,17 +3,58 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- 登录/注册模态框逻辑 ---
     const loginRegisterModal = document.getElementById('loginRegisterModal');
-    const openLoginRegisterModalBtn = document.getElementById('openLoginRegisterModal');
+    const openLoginRegisterModalBtn = document.getElementById('openLoginRegisterModal'); // Header button
     const closeLoginRegisterModalBtn = document.getElementById('closeLoginRegisterModal');
-    const showLoginBtn = document.getElementById('showLogin');
-    const showRegisterBtn = document.getElementById('showRegister');
+    const showLoginBtn = document.getElementById('showLogin'); // Modal internal switch button
+    const showRegisterBtn = document.getElementById('showRegister'); // Modal internal switch button
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
 
+    // Sidebar buttons
+    const sidebarRegisterBtn = document.getElementById('sidebarRegisterBtn');
+    const sidebarLoginBtn = document.getElementById('sidebarLoginBtn');
+
+    // Helper functions to show specific forms within the modal
+    function showLoginForm() {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        showLoginBtn.classList.add('bg-gray-100');
+        showRegisterBtn.classList.remove('bg-gray-100');
+    }
+
+    function showRegisterForm() {
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        showRegisterBtn.classList.add('bg-gray-100');
+        showLoginBtn.classList.remove('bg-gray-100');
+    }
+
     // Function to open the login/register modal
+    function openLoginRegisterModal() {
+        loginRegisterModal.style.display = 'flex';
+    }
+
+    // Event listener for the header's "登录/注册" button
     if (openLoginRegisterModalBtn) {
         openLoginRegisterModalBtn.addEventListener('click', () => {
-            loginRegisterModal.style.display = 'flex';
+            openLoginRegisterModal();
+            showLoginForm(); // Default to login when opening from header
+        });
+    }
+
+    // Event listener for the sidebar's "注册豆瓣" button
+    if (sidebarRegisterBtn) {
+        sidebarRegisterBtn.addEventListener('click', () => {
+            openLoginRegisterModal();
+            showRegisterForm(); // Show register form when clicked
+        });
+    }
+
+    // Event listener for the sidebar's "登录" button
+    if (sidebarLoginBtn) {
+        sidebarLoginBtn.addEventListener('click', () => {
+            openLoginRegisterModal();
+            showLoginForm(); // Show login form when clicked
         });
     }
 
@@ -33,24 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Switch to Login form
+    // Switch to Login form (internal modal button)
     if (showLoginBtn) {
-        showLoginBtn.addEventListener('click', () => {
-            loginForm.classList.remove('hidden');
-            registerForm.classList.add('hidden');
-            showLoginBtn.classList.add('bg-gray-100');
-            showRegisterBtn.classList.remove('bg-gray-100');
-        });
+        showLoginBtn.addEventListener('click', showLoginForm);
     }
 
-    // Switch to Register form
+    // Switch to Register form (internal modal button)
     if (showRegisterBtn) {
-        showRegisterBtn.addEventListener('click', () => {
-            registerForm.classList.remove('hidden');
-            loginForm.classList.add('hidden');
-            showRegisterBtn.classList.add('bg-gray-100');
-            showLoginBtn.classList.remove('bg-gray-100');
-        });
+        showRegisterBtn.addEventListener('click', showRegisterForm);
     }
 
     // Handle Login Form submission (placeholder for actual login logic)
@@ -62,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Login attempt:', { email, password });
             // In a real application, you would send this data to a server for authentication.
             // For this experiment, we'll just log it and close the modal.
-            // Using custom message box instead of alert()
             showMessageBox('登录成功！(此为模拟登录)');
             loginRegisterModal.style.display = 'none';
         });
@@ -77,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Register attempt:', { email, password });
             // In a real application, you would send this data to a server for registration.
             // For this experiment, we'll just log it and close the modal.
-            // Using custom message box instead of alert()
             showMessageBox('注册成功！(此为模拟注册)');
             loginRegisterModal.style.display = 'none';
         });
@@ -85,15 +114,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 购物车模态框逻辑 ---
     const shoppingCartModal = document.getElementById('shoppingCartModal');
-    // Assuming there's a button to open the cart, let's add one to the header for demonstration
-    const cartButton = document.createElement('button');
+    const cartButton = document.createElement('button'); // Dynamically created cart button
     cartButton.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5H3m0 0L1 1m6 12a2 2 0 100 4 2 2 0 000-4zm14 0a2 2 0 100 4 2 2 0 000-4z" />
         </svg>
     `;
     cartButton.className = 'text-gray-600 hover:text-douban-text-green transition-colors duration-200 ml-4';
-    document.querySelector('header .flex.items-center.space-x-4').appendChild(cartButton); // Append to header's right section
+    const headerRightSection = document.querySelector('header .flex.items-center.space-x-4');
+    if (headerRightSection) {
+        headerRightSection.appendChild(cartButton);
+    } else {
+        console.error("Could not find the header's right section to append the cart button.");
+    }
 
     const closeShoppingCartModalBtn = document.getElementById('closeShoppingCartModal');
     const cartItemsContainer = document.getElementById('cartItems');
@@ -109,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to render cart items
     function renderCart() {
+        if (!cartItemsContainer || !cartTotalSpan) return; // Ensure elements exist
+
         cartItemsContainer.innerHTML = ''; // Clear existing items
         let total = 0;
 
@@ -192,13 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkoutButton) {
         checkoutButton.addEventListener('click', () => {
             if (cart.length > 0) {
-                // Using custom message box instead of alert()
                 showMessageBox(`即将结算，总金额：¥${cartTotalSpan.textContent} (此为模拟结算)`);
                 shoppingCartModal.style.display = 'none';
                 cart = []; // Clear cart after checkout
                 renderCart();
             } else {
-                // Using custom message box instead of alert()
                 showMessageBox('购物车是空的，请先添加商品！');
             }
         });
@@ -206,13 +239,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to create and show a custom message box
     function showMessageBox(message) {
-        // Create modal overlay
+        const existingMessageBox = document.getElementById('messageBoxOverlay');
+        if (existingMessageBox) {
+            document.body.removeChild(existingMessageBox);
+        }
+
         const messageBoxOverlay = document.createElement('div');
         messageBoxOverlay.className = 'modal-overlay';
         messageBoxOverlay.id = 'messageBoxOverlay';
         document.body.appendChild(messageBoxOverlay);
 
-        // Create modal content
         const messageBoxContent = document.createElement('div');
         messageBoxContent.className = 'modal-content max-w-sm text-center';
         messageBoxContent.innerHTML = `
@@ -222,26 +258,128 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         messageBoxOverlay.appendChild(messageBoxContent);
 
-        // Display the modal
         messageBoxOverlay.style.display = 'flex';
 
-        // Close button functionality
         document.getElementById('closeMessageBox').addEventListener('click', () => {
             document.body.removeChild(messageBoxOverlay);
         });
 
-        // Confirm button functionality
         document.getElementById('confirmMessageBox').addEventListener('click', () => {
             document.body.removeChild(messageBoxOverlay);
         });
 
-        // Close when clicking outside
         messageBoxOverlay.addEventListener('click', (event) => {
             if (event.target === messageBoxOverlay) {
                 document.body.removeChild(messageBoxOverlay);
             }
         });
     }
+
+    // --- 滚动跳转逻辑 ---
+    // Function to handle smooth scrolling to a target element with header offset
+    function smoothScrollTo(targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const mainHeader = document.getElementById('main-header');
+            const secondaryNav = document.getElementById('secondary-nav');
+
+            // Calculate offset based on active sticky headers
+            let headerOffset = 0;
+            if (mainHeader) {
+                headerOffset += mainHeader.offsetHeight;
+            }
+            // If the secondary nav is sticky AND currently visible (i.e., we are scrolling within the main content)
+            // we should also account for its height.
+            if (secondaryNav && window.getComputedStyle(secondaryNav).position === 'sticky') {
+                headerOffset += secondaryNav.offsetHeight;
+            }
+
+            // Get the element's position relative to the document
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            // Calculate the final scroll position with offset and a little extra padding
+            const offsetPosition = elementPosition - headerOffset - 20; // -20 for a little more space
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    // --- 顶部导航链接 (读书、电影、音乐等) ---
+    const topNavLinks = document.querySelectorAll('.top-nav-link');
+    topNavLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            const targetId = event.target.dataset.target;
+
+            // Remove active state from all top nav links
+            topNavLinks.forEach(tLink => tLink.classList.remove('active-tab'));
+            // Add active state to the clicked top nav link (optional styling, if desired)
+            event.target.classList.add('active-tab');
+
+            smoothScrollTo(targetId);
+        });
+    });
+
+    // --- 页面内容切换导航 (首页、精选内容等) ---
+    const tabLinks = document.querySelectorAll('.tab-link');
+    tabLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            const targetId = event.target.dataset.target;
+
+            // Remove active class from all tab links (secondary nav)
+            tabLinks.forEach(tLink => {
+                tLink.classList.remove('active-tab');
+            });
+            // Add active class to the clicked tab link (secondary nav)
+            event.target.classList.add('active-tab');
+
+            smoothScrollTo(targetId);
+        });
+    });
+
+    // Set initial active tab on page load (e.g., "首页")
+    // If the page loads with a hash in the URL, scroll to that section
+    const initialHash = window.location.hash.substring(1); // Remove '#'
+    if (initialHash && document.getElementById(initialHash)) {
+        // Find the corresponding tab link and activate it
+        const correspondingTabLink = document.querySelector(`.tab-link[data-target="${initialHash}"]`);
+        if (correspondingTabLink) {
+            tabLinks.forEach(tLink => tLink.classList.remove('active-tab'));
+            correspondingTabLink.classList.add('active-tab');
+        }
+        // Also activate top nav link if it matches a content section (e.g., #movie-content matches "电影")
+        const correspondingTopNavLink = document.querySelector(`.top-nav-link[data-target="${initialHash}"]`);
+        if (correspondingTopNavLink) {
+             topNavLinks.forEach(tLink => tLink.classList.remove('active-tab')); // Ensure no active state from previous rendering
+             correspondingTopNavLink.classList.add('active-tab');
+        }
+
+
+        smoothScrollTo(initialHash);
+    } else {
+        // Default to home if no valid hash
+        const homeTabLink = document.querySelector('.tab-link[data-target="home-content"]');
+        if (homeTabLink) {
+            homeTabLink.classList.add('active-tab');
+        }
+        smoothScrollTo('home-content');
+    }
+
+    // --- "选座购票" 按钮功能实现 ---
+    const purchaseButtons = document.querySelectorAll('.purchase-button');
+    purchaseButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const movieTitle = event.target.dataset.movieTitle;
+            if (movieTitle) {
+                showMessageBox(`已为您购买《${movieTitle}》的电影票！`);
+            } else {
+                showMessageBox('购买失败：未能获取电影信息。');
+            }
+        });
+    });
 
     // Initial render of the cart (optional, if you want it to show on page load)
     renderCart();
